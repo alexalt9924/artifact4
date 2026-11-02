@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { login, loginWithGoogle, signup } from "@/app/(auth)/actions";
+import { continueAsGuest, login, loginWithGoogle, signup } from "@/app/(auth)/actions";
 
 export default function AuthForm({
   mode,
@@ -30,6 +30,9 @@ export default function AuthForm({
       </form>
       <form action={loginWithGoogle}>
         <button className="w-full rounded border p-2">Continue with Google</button>
+      </form>
+      <form action={continueAsGuest}>
+        <button className="w-full rounded border border-dashed p-2">Continue as guest</button>
       </form>
       <p className="text-sm">
         {isLogin ? "No account? " : "Already have an account? "}

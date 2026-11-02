@@ -3,6 +3,9 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { createClient } from "@/lib/db/server";
+import { createEntry } from "@/lib/db/entries";
+import { saveTemplate } from "@/lib/db/template";
+import { mockEntries, mockTemplate } from "@/mocks/entries";
 
 function creds(formData: FormData) {
   return {
@@ -46,4 +49,26 @@ export async function logout() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/login");
+}
+
+// Guest mode: Supabase anonymous sign-in gives a real (temporary) user, so RLS still applies.
+// Seeds sample data so reviewers see a populated library right away.
+export async function continueAsGuest() {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.signInAnonymously();
+  if (error) redirect(`/login?error=${encodeURIComponent(error.message)}`);
+  const { header, sectionOrder, style, pageSize } = mockTemplate;
+  await saveTemplate({ header, sectionOrder, style, pageSize });
+  for (const e of mockEntries) {
+    await createEntry({
+      type: e.type,
+      title: e.title,
+      subtitle: e.subtitle,
+      location: e.location,
+      startDate: e.startDate,
+      endDate: e.endDate,
+      bullets: e.bullets,
+    });
+  }
+  redirect("/library");
 }
