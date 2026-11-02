@@ -5,7 +5,7 @@ import type { Template } from "@/types/resume";
 export const DEFAULT_TEMPLATE: Omit<Template, "userId"> = {
   header: { name: "", links: [] },
   sectionOrder: ["education", "experience", "project", "skills"],
-  style: { fontFamily: "Times New Roman", fontSizePt: 11, marginIn: 0.75 },
+  style: { fontFamily: "Times New Roman", fontSizePt: 11, marginIn: 0.5 },
   pageSize: "letter",
 };
 

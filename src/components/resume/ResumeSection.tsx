@@ -16,8 +16,8 @@ interface ResumeSectionProps {
 
 export function ResumeSection({ type, entries, overflowIds, insertion, onRemove }: ResumeSectionProps) {
   return (
-    <section className="mt-[0.9em]">
-      <h2 className="mb-[0.35em] border-b border-current text-[1.05em] font-bold tracking-wider uppercase">
+    <section className="mt-[0.7em]">
+      <h2 className="mb-[0.3em] border-b border-current text-[1.2em] leading-snug [font-variant:small-caps]">
         {SECTION_TITLES[type]}
       </h2>
       <SortableContext items={entries.map((e) => resumeDndId(e.id))} strategy={verticalListSortingStrategy}>

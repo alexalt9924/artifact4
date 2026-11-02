@@ -63,29 +63,35 @@ export function ResumeEntry({ entry, overflowing, insert, onRemove }: ResumeEntr
 }
 
 function EntryBody({ entry }: { entry: Entry }) {
+  // Jake's style: skills are "Category: a, b, c" lines.
   if (entry.type === "skills") {
     return (
-      <p>
+      <p className="text-[0.9em]">
         <span className="font-bold">{entry.title}:</span> {entry.bullets.join(", ")}
       </p>
     );
   }
 
   const dates = formatDateRange(entry.startDate, entry.endDate);
+  const isProject = entry.type === "project";
   return (
     <>
       <div className="flex items-baseline justify-between gap-4">
-        <span className="font-bold">{entry.title}</span>
+        <span>
+          <span className="font-bold">{entry.title}</span>
+          {/* Projects read "Title | Tech stack" on one line. */}
+          {isProject && entry.subtitle && <span className="text-[0.9em]"> | <em>{entry.subtitle}</em></span>}
+        </span>
         {dates && <span className="shrink-0">{dates}</span>}
       </div>
-      {(entry.subtitle || entry.location) && (
-        <div className="flex items-baseline justify-between gap-4 italic">
+      {!isProject && (entry.subtitle || entry.location) && (
+        <div className="flex items-baseline justify-between gap-4 text-[0.9em] italic">
           <span>{entry.subtitle}</span>
           {entry.location && <span className="shrink-0">{entry.location}</span>}
         </div>
       )}
       {entry.bullets.length > 0 && (
-        <ul className="mt-[0.15em] list-disc pl-[1.3em]">
+        <ul className="mt-[0.1em] list-disc pl-[1.5em] text-[0.9em]">
           {entry.bullets.map((bullet, i) => (
             <li key={i}>{bullet}</li>
           ))}
