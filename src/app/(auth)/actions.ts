@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { createClient } from "@/lib/db/server";
-import { createEntry } from "@/lib/db/entries";
+import { createEntries } from "@/lib/db/entries";
 import { saveTemplate } from "@/lib/db/template";
 import { mockEntries, mockTemplate } from "@/mocks/entries";
 
@@ -58,17 +58,20 @@ export async function continueAsGuest() {
   const { error } = await supabase.auth.signInAnonymously();
   if (error) redirect(`/login?error=${encodeURIComponent(error.message)}`);
   const { header, sectionOrder, style, pageSize } = mockTemplate;
-  await saveTemplate({ header, sectionOrder, style, pageSize });
-  for (const e of mockEntries) {
-    await createEntry({
-      type: e.type,
-      title: e.title,
-      subtitle: e.subtitle,
-      location: e.location,
-      startDate: e.startDate,
-      endDate: e.endDate,
-      bullets: e.bullets,
-    });
-  }
+  // Two round trips in parallel instead of one per entry.
+  await Promise.all([
+    saveTemplate({ header, sectionOrder, style, pageSize }),
+    createEntries(
+      mockEntries.map((e) => ({
+        type: e.type,
+        title: e.title,
+        subtitle: e.subtitle,
+        location: e.location,
+        startDate: e.startDate,
+        endDate: e.endDate,
+        bullets: e.bullets,
+      })),
+    ),
+  ]);
   redirect("/library");
 }

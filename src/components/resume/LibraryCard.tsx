@@ -29,20 +29,20 @@ export function LibraryCard({ entry, onResume }: LibraryCardProps) {
       className={[
         "rounded-md border bg-white px-3 py-2 text-sm shadow-sm",
         onResume
-          ? "cursor-default border-dashed border-neutral-300 opacity-60"
-          : "cursor-grab border-neutral-200 hover:border-sky-400 active:cursor-grabbing",
+          ? "cursor-default border-dashed border-slate-300 opacity-60"
+          : "cursor-grab border-slate-200 hover:border-brand-400 active:cursor-grabbing",
         isDragging ? "opacity-40" : "",
       ].join(" ")}
     >
       <div className="flex items-start justify-between gap-2">
-        <span className="font-medium text-neutral-900">{entry.title}</span>
+        <span className="font-medium text-slate-900">{entry.title}</span>
         {onResume && <span className="shrink-0 text-xs text-emerald-700">✓ on resume</span>}
       </div>
-      {entry.subtitle && <div className="truncate text-neutral-600">{entry.subtitle}</div>}
+      {entry.subtitle && <div className="truncate text-slate-600">{entry.subtitle}</div>}
       {entry.type === "skills" ? (
-        <div className="truncate text-xs text-neutral-500">{entry.bullets.join(", ")}</div>
+        <div className="truncate text-xs text-slate-500">{entry.bullets.join(", ")}</div>
       ) : (
-        <div className="text-xs text-neutral-500">
+        <div className="text-xs text-slate-500">
           {[dates, `${entry.bullets.length} bullet${entry.bullets.length === 1 ? "" : "s"}`]
             .filter(Boolean)
             .join(" · ")}

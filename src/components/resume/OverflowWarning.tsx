@@ -14,10 +14,10 @@ export function OverflowWarning({ usedPx, availablePx, overflowCount }: Overflow
       role={over ? "alert" : "status"}
       className={[
         "flex items-center gap-4 border-b px-6 py-2 text-sm print:hidden",
-        over ? "border-red-200 bg-red-50 text-red-800" : "border-neutral-300 bg-neutral-100 text-neutral-600",
+        over ? "border-red-200 bg-red-50 text-red-800" : "border-slate-300 bg-slate-100 text-slate-600",
       ].join(" ")}
     >
-      <div className="h-2 w-40 shrink-0 overflow-hidden rounded-full bg-neutral-300">
+      <div className="h-2 w-40 shrink-0 overflow-hidden rounded-full bg-slate-300">
         <div
           className={`h-full rounded-full ${over ? "bg-red-500" : percent > 90 ? "bg-amber-500" : "bg-emerald-500"}`}
           style={{ width: `${Math.min(percent, 100)}%` }}

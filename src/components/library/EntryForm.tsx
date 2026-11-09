@@ -1,5 +1,6 @@
 import { saveEntry } from "@/app/library/actions";
 import type { Entry } from "@/types/resume";
+import SubmitButton from "./SubmitButton";
 import { btnPrimary, hintCls, inputCls, labelCls, TYPE_LABELS } from "./ui";
 
 export default function EntryForm({ entry }: { entry?: Entry }) {
@@ -40,7 +41,9 @@ export default function EntryForm({ entry }: { entry?: Entry }) {
         Bullets <span className={hintCls}>One per line. For a skill group, list the skills.</span>
         <textarea name="bullets" rows={5} defaultValue={entry?.bullets.join("\n")} className={inputCls} />
       </label>
-      <button className={`${btnPrimary} self-start`}>{entry ? "Save changes" : "Add to library"}</button>
+      <SubmitButton className={`${btnPrimary} self-start`} pendingText="Saving…">
+        {entry ? "Save changes" : "Add to library"}
+      </SubmitButton>
     </form>
   );
 }

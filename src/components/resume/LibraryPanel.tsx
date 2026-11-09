@@ -24,13 +24,13 @@ export function LibraryPanel({ entries, sectionOrder, isOnResume, acceptingRemov
     <aside
       ref={setNodeRef}
       className={[
-        "relative flex w-80 shrink-0 flex-col border-r border-neutral-200 bg-neutral-50 print:hidden",
+        "relative flex w-80 shrink-0 flex-col border-r border-slate-200 bg-slate-50 print:hidden",
         acceptingRemoval && isOver ? "bg-red-50" : "",
       ].join(" ")}
     >
-      <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-3">
-        <h2 className="text-sm font-semibold tracking-wide text-neutral-700 uppercase">Library</h2>
-        <Link href="/library" className="text-sm font-medium text-sky-700 hover:underline">
+      <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+        <h2 className="text-sm font-semibold tracking-wide text-slate-700 uppercase">Library</h2>
+        <Link href="/library" className="text-sm font-medium text-brand-700 hover:underline">
           + New entry
         </Link>
       </div>
@@ -40,7 +40,7 @@ export function LibraryPanel({ entries, sectionOrder, isOnResume, acceptingRemov
           if (ofType.length === 0) return null;
           return (
             <div key={type}>
-              <h3 className="mb-2 text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+              <h3 className="mb-2 text-xs font-semibold tracking-wider text-slate-500 uppercase">
                 {SECTION_TITLES[type]}
               </h3>
               <div className="space-y-2">
@@ -51,13 +51,13 @@ export function LibraryPanel({ entries, sectionOrder, isOnResume, acceptingRemov
             </div>
           );
         })}
-        {entries.length === 0 && <p className="text-sm text-neutral-500">Your library is empty.</p>}
+        {entries.length === 0 && <p className="text-sm text-slate-500">Your library is empty.</p>}
       </div>
       {acceptingRemoval && (
         <div
           className={[
             "pointer-events-none absolute inset-2 flex items-center justify-center rounded-lg border-2 border-dashed text-sm font-medium",
-            isOver ? "border-red-500 bg-red-50/90 text-red-700" : "border-neutral-400 bg-neutral-50/80 text-neutral-600",
+            isOver ? "border-red-500 bg-red-50/90 text-red-700" : "border-slate-400 bg-slate-50/80 text-slate-600",
           ].join(" ")}
         >
           Drop here to remove from resume
