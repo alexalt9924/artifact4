@@ -20,6 +20,14 @@ export async function createEntry(input: EntryInput): Promise<void> {
   if (error) throw new Error(error.message);
 }
 
+/** One round trip for many entries (used to seed guest accounts quickly). */
+export async function createEntries(inputs: EntryInput[]): Promise<void> {
+  if (inputs.length === 0) return;
+  const supabase = await createClient();
+  const { error } = await supabase.from("entries").insert(inputs.map(entryToRow));
+  if (error) throw new Error(error.message);
+}
+
 export async function updateEntry(id: string, input: EntryInput): Promise<void> {
   const supabase = await createClient();
   const { error } = await supabase.from("entries").update(entryToRow(input)).eq("id", id);

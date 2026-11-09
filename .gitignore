@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Third-party AI skills installed by uipro (not project code)
+.claude/skills/

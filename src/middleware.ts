@@ -1,9 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const PROTECTED = ["/library", "/template", "/resume"];
-
 // Refreshes the Supabase session cookie and sends logged-out users to /login.
+// Only runs on protected pages, so /login and static assets never pay for it.
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
@@ -24,17 +23,15 @@ export async function middleware(request: NextRequest) {
     },
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const path = request.nextUrl.pathname;
-  if (!user && PROTECTED.some((p) => path === p || path.startsWith(p + "/"))) {
+  // getClaims() verifies the JWT locally instead of calling Supabase on every navigation.
+  // Data access is still protected by row-level security, which checks the token server-side.
+  const { data } = await supabase.auth.getClaims();
+  if (!data?.claims) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
   return response;
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/library/:path*", "/template/:path*", "/resume/:path*"],
 };

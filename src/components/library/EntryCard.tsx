@@ -13,7 +13,7 @@ export default function EntryCard({ entry }: { entry: Entry }) {
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
             <p className="font-semibold">{entry.title}</p>
-            <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${TYPE_BADGE[entry.type]}`}>
+            <span className={`rounded-full px-2 py-0.5 text-xs font-medium ring-1 ring-inset ${TYPE_BADGE[entry.type]}`}>
               {TYPE_LABELS[entry.type]}
             </span>
           </div>
@@ -33,7 +33,7 @@ export default function EntryCard({ entry }: { entry: Entry }) {
         </ul>
       )}
       <details className="mt-3 border-t border-slate-100 pt-3">
-        <summary className="cursor-pointer text-sm font-medium text-indigo-600 hover:underline">Edit</summary>
+        <summary className="cursor-pointer text-sm font-medium text-brand-600 hover:text-brand-700 hover:underline">Edit</summary>
         <div className="mt-3">
           <EntryForm entry={entry} />
         </div>

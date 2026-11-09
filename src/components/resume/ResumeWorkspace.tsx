@@ -158,7 +158,7 @@ export function ResumeWorkspace({ entries, template, seedResumes }: ResumeWorksp
       onDragEnd={handleDragEnd}
       onDragCancel={resetDrag}
     >
-      <div className="flex h-screen flex-col bg-neutral-100 print:block print:h-auto print:bg-white">
+      <div className="flex h-screen flex-col bg-slate-100 print:block print:h-auto print:bg-white">
         <ResumeToolbar
           resumes={resumes}
           active={active}
@@ -176,7 +176,7 @@ export function ResumeWorkspace({ entries, template, seedResumes }: ResumeWorksp
             isOnResume={(id) => (active ? containsEntry(active.sections, id) : false)}
             acceptingRemoval={dragging?.source === "resume"}
           />
-          <main className="flex min-w-0 flex-1 flex-col bg-neutral-200 print:block print:bg-white">
+          <main className="flex min-w-0 flex-1 flex-col bg-slate-200 print:block print:bg-white">
             {active && (
               <OverflowWarning
                 usedPx={overflow.usedPx}
@@ -186,7 +186,7 @@ export function ResumeWorkspace({ entries, template, seedResumes }: ResumeWorksp
             )}
             <div className="flex-1 overflow-auto print:overflow-visible">
               {!loaded ? (
-                <p className="p-8 text-sm text-neutral-500 print:hidden">Loading…</p>
+                <p className="p-8 text-sm text-slate-500 print:hidden">Loading…</p>
               ) : active ? (
                 // Extra bottom padding leaves room to see content that spills past the page.
                 <div className="mx-auto w-fit px-10 pt-8 pb-40 print:m-0 print:p-0">
@@ -203,12 +203,12 @@ export function ResumeWorkspace({ entries, template, seedResumes }: ResumeWorksp
                   />
                 </div>
               ) : (
-                <div className="flex flex-col items-center gap-3 p-16 text-neutral-600 print:hidden">
+                <div className="flex flex-col items-center gap-3 p-16 text-slate-600 print:hidden">
                   <p>You don&apos;t have any resumes yet.</p>
                   <button
                     type="button"
                     onClick={handleCreate}
-                    className="rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white hover:bg-neutral-700"
+                    className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
                   >
                     Create a resume
                   </button>
