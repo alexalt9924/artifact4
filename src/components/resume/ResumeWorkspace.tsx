@@ -17,7 +17,7 @@ import type { Entry, Resume, Template } from "@/types/resume";
 import { LIBRARY_DROP_ID, PAGE_DROP_ID, dragData, resumeCollisionDetection, type EntryDragData } from "@/lib/layout/dnd";
 import { contentHeightPx } from "@/lib/layout/pageSize";
 import { addEntry, containsEntry, moveEntry, removeEntry } from "@/lib/layout/resumeOps";
-import { localResumeStore } from "@/lib/layout/resumeStore";
+import { supabaseResumeStore } from "@/lib/layout/supabaseResumeStore";
 import { useOverflow } from "@/lib/layout/useOverflow";
 import { useResumes } from "@/lib/layout/useResumes";
 import { EntryDragPreview } from "./EntryDragPreview";
@@ -50,7 +50,7 @@ function insertionFor(event: DragMoveEvent | DragEndEvent): Insertion {
 
 export function ResumeWorkspace({ entries, template, seedResumes }: ResumeWorkspaceProps) {
   const { resumes, active, loaded, setActiveId, create, duplicate, remove, rename, updateSections } = useResumes(
-    localResumeStore,
+    supabaseResumeStore,
     template.userId,
     seedResumes,
   );
