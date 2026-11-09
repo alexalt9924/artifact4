@@ -1,5 +1,5 @@
 // Storage for resumes behind a small async interface.
-// For now this is localStorage; Person A can swap in a Supabase-backed store with the same interface.
+// The app uses supabaseResumeStore; this localStorage store is kept for working offline without Supabase.
 
 import type { Resume } from "@/types/resume";
 import { normalizeSections } from "./resumeOps";

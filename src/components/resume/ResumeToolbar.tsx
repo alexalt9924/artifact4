@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { logout } from "@/app/(auth)/actions";
 import type { Resume } from "@/types/resume";
 
 interface ResumeToolbarProps {
@@ -16,6 +18,8 @@ interface ResumeToolbarProps {
 const buttonClass =
   "rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-sm font-medium text-neutral-700 hover:bg-neutral-50 disabled:opacity-40";
 
+const linkClass = "rounded-md px-2 py-1.5 text-sm text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900";
+
 export function ResumeToolbar({
   resumes,
   active,
@@ -28,7 +32,15 @@ export function ResumeToolbar({
 }: ResumeToolbarProps) {
   return (
     <header className="flex flex-wrap items-center gap-3 border-b border-neutral-200 bg-white px-4 py-2.5 print:hidden">
-      <span className="mr-2 font-semibold text-neutral-900">Resume Builder</span>
+      <span className="font-semibold text-neutral-900">Resume Builder</span>
+      <nav className="mr-2 flex gap-1">
+        <Link href="/library" className={linkClass}>
+          Library
+        </Link>
+        <Link href="/template" className={linkClass}>
+          Template
+        </Link>
+      </nav>
 
       <label className="sr-only" htmlFor="resume-switcher">
         Current resume
@@ -90,6 +102,11 @@ export function ResumeToolbar({
       >
         Export PDF
       </button>
+      <form action={logout}>
+        <button type="submit" className={linkClass}>
+          Log out
+        </button>
+      </form>
     </header>
   );
 }
