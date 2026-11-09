@@ -7,10 +7,9 @@ A web app where a user logs in, sets up their resume once as a template, keeps a
 One-line pitch: Write your experience once, drag it into a tailored resume for every job, with formatting that never breaks.
 
 2. Who it's for
-User: [name / group — e.g., a classmate job hunting, a career club]
-How we reach them: [text / Discord / in person]
-What they told us they need: [fill in after first conversation]
-Handoff date: [date before Sun Nov 8]
+User: CS students who want to format professional resumes
+How we reach them: Discord
+What they told us they need: Help with their resumes
 3. Main screen (from our sketch)
 +------------------+-----------------------------------+
 |  LIBRARY         |            RESUME                 |
@@ -93,8 +92,8 @@ interface Resume {
 }
 8. Ownership
 Area	Owner	Folders
-Auth, database, library (create/edit/delete entries), template setup	Person A: [name]	src/app/(auth)/, src/app/library/, src/app/template/, src/lib/db/
-Resume page, drag and drop, fixed-page rendering, overflow check, PDF export	Person B: [name]	src/app/resume/, src/components/resume/, src/lib/layout/
+Auth, database, library (create/edit/delete entries), template setup	Person A: Alex Douk	src/app/(auth)/, src/app/library/, src/app/template/, src/lib/db/
+Resume page, drag and drop, fixed-page rendering, overflow check, PDF export	Person B: Alexander James Perry	src/app/resume/, src/components/resume/, src/lib/layout/
 Shared types, this plan, LOG.md, CLAUDE.md	Both (changes by PR, reviewed by the other)	src/types/, root .md files
 
 Until Person A's library is merged, Person B uses mock entries from src/mocks/entries.ts that match the data model.
